@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Page</title>
+</head>
+<body>
+    <form id="foodRequestForm">
+        <input type="text" name="user_name" placeholder="Your Name">
+        <textarea name="food_details" placeholder="Food Details"></textarea>
+        <button type="submit">Send Request</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#foodRequestForm').submit(function(e) {
+                e.preventDefault();
+                $.post('/user/', $(this).serialize(), function(data) {
+                    if (data.status === 'success') {
+                        alert('Request sent successfully!');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

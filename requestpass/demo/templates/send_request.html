@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friend 1</title>
+</head>
+<body>
+    <h2>Friend 1</h2>
+    <input type="text" id="messageInput" placeholder="Type your message">
+    <button id="sendButton">Send</button>
+
+    <script>
+        const socket = new WebSocket('ws://localhost:8000/ws/friend1/');
+
+        document.getElementById('sendButton').addEventListener('click', () => {
+            const message = document.getElementById('messageInput').value;
+            socket.send(JSON.stringify({ 'message': message }));
+        });
+    </script>
+</body>
+</html>

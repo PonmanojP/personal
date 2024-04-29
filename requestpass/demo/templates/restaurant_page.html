@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Page</title>
+</head>
+<body>
+    <ul>
+        {% for request in requests %}
+        <li>{{ request.user_name }} - {{ request.food_details }} <button onclick="acceptRequest({{ request.id }})">Accept</button></li>
+        {% endfor %}
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function acceptRequest(requestId) {
+            $.get(`/accept/${requestId}/`, function(data) {
+                if (data.status === 'success') {
+                    alert('Request accepted!');
+                    location.reload(); // Refresh page to update list
+                }
+            });
+        }
+    </script>
+</body>
+</html>
